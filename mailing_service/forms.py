@@ -1,6 +1,6 @@
 from django import forms
 
-from mailing_service.models import MessageSender
+from mailing_service.models import MessageSender, Customer
 
 
 class StyleMixinForm:
@@ -19,20 +19,9 @@ class MessageSenderForm(StyleMixinForm, forms.ModelForm):
         model = MessageSender
         fields = ['subject', 'body', 'start_date', 'end_date', 'frequency']
 
-    def clean_name(self):
-        cleaned_data = self.cleaned_data.get('name')
 
-        for f_word in FORBIDDEN_WORDS:
-            if f_word in cleaned_data:
-                raise forms.ValidationError('Поле название содержит запрещенные слова.')
+class CustomerForm(StyleMixinForm, forms.ModelForm):
 
-        return cleaned_data
-
-    def clean_description(self):
-        cleaned_data = self.cleaned_data.get('description')
-
-        for f_word in FORBIDDEN_WORDS:
-            if f_word in cleaned_data:
-                raise forms.ValidationError('Поле описание содержит запрещенные слова.')
-
-        return cleaned_data
+    class Meta:
+        model = Customer
+        fields = ['name', 'email', 'description']

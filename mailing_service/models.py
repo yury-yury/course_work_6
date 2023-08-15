@@ -7,7 +7,7 @@ from users.models import User
 
 class Customer(models.Model):
     name = models.CharField(max_length=150, verbose_name='Наименование клиента')
-    email = models.EmailField(verbose_name='Адрес электронной почты')
+    email = models.EmailField(unique=True, verbose_name='Адрес электронной почты')
     description = models.TextField(verbose_name='Описание клиента', blank=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Создатель записи')
     is_active = models.BooleanField(default=True, verbose_name='Активный')
@@ -41,7 +41,7 @@ class MessageSender(models.Model):
     start_date = models.DateField(default=date.today, verbose_name='Дата начала')
     # next_time = models.TimeField(default=datetime.now, verbose_name='Время рассылки')
     end_date = models.DateField(default=date.today, verbose_name='Дата окончания')
-    frequency = models.CharField(max_length=7, choices=FREQUENCY, verbose_name='Периодичность рассылки')
+    frequency = models.CharField(max_length=7, choices=FREQUENCY, default='ONCE', verbose_name='Периодичность рассылки')
     status = models.CharField(max_length=50, default='CREATED', choices=STATUS, verbose_name='Статус')
     creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True, verbose_name='Создатель рассылки')
 

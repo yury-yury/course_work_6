@@ -3,7 +3,7 @@
 {% block body %}
     {% if request.user.is_authenticated %}
     <div class="col-12 mb-5">
-    <a class="btn btn-outline-primary" href="{% url 'sender:create' %}">Добавить рассылку</a>
+    <a class="btn btn-outline-primary" href="{% url 'sender:customer_create' %}">Добавить клиента</a>
     </div>
     {% endif %}
     <div class="row text-center">
@@ -11,25 +11,24 @@
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{ item.subject | truncatechars:25 }}</h4>
+                    <h4 class="my-0 font-weight-normal">{{ item.name }}</h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>Периодичность: {{ item.frequency }}</li>
-                        <li>Статус: {{ item.status }}</li>
+                        <li>Адрес почты: {{ item.email }}</li>
                     </ul>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center">
 
                         <div class="btn-group">
-                            <a href="{% url 'sender:detail' item.id %} " class="btn btn-sm btn-outline-secondary">Подробно</a>
+                            <a href="{% url 'sender:customer_detail' item.id %} " class="btn btn-sm btn-outline-secondary">Подробно</a>
                         {% if request.user.is_authenticated %}
                             {% if perms.catalog.set_published %}
                             <a href="#" class="btn btn-sm btn-outline-secondary">Модерировать</a>
                             {% elif request.user == item.creator %}
-                            <a href="{% url 'sender:update' item.id %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
-                            <a href="{% url 'sender:delete' item.id %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
+                            <a href="{% url 'sender:customer_update' item.id %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                            <a href="{% url 'sender:customer_delete' item.id %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
                             {% endif %}
                         {% endif %}
                         </div>
@@ -43,7 +42,7 @@
   <ul class="pagination">
       {% if page_obj.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="{% url 'sender:list' %}?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+            <a class="page-link" href="{% url 'sender:customer_list' %}?page={{ page_obj.previous_page_number }}">Предыдущая</a>
             </li>
       {% else %}
           <li class="page-item disabled">
@@ -53,7 +52,7 @@
 
     {% if page_obj.has_next %}
     <li class="page-item">
-      <a class="page-link" href="{% url 'sender:list' %}?page={{ page_obj.next_page_number }}">Следующая</a>
+      <a class="page-link" href="{% url 'sender:customer_list' %}?page={{ page_obj.next_page_number }}">Следующая</a>
     </li>
     {% else %}
         <li class="page-item disabled">

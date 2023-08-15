@@ -1,0 +1,39 @@
+{% extends 'mailing_service/base.html' %}
+
+{% block body %}
+    <div class="row text-start">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="w-25">Название</td>
+                            <td>{{ object.name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Адрес</td>
+                            <td>{{ object.email }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">ID клиента</td>
+                            <td>{{ object.id }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Описание</td>
+                            <td>{{ object.description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Создатель записи</td>
+                            <td>{{ object.creator }}</td>
+                        </tr>
+                         <tr>
+                            <td class="w-25">Статус клиента</td>
+                            <td>{{ object.is_active }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

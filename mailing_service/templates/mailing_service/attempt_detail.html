@@ -1,0 +1,39 @@
+{% extends 'mailing_service/base.html' %}
+
+{% block body %}
+    <div class="row text-start">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="w-25">Заголовок сообщения</td>
+                            <td>{{ object.message_sender.subject }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Текст сообщения</td>
+                            <td>{{ object.message_sender.body }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Адресат</td>
+                            <td>{{ object.customer.name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Дата рассылки</td>
+                            <td>{{ object.created_at }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Результат: </td>
+                            <td>{{ object.status }}</td>
+                        </tr>
+                         <tr>
+                            <td class="w-25">Ответ почтового сервера</td>
+                            <td>{{ object.response }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

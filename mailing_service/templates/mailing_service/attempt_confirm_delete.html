@@ -1,0 +1,24 @@
+{% extends 'mailing_service/base.html' %}
+
+{% block body %}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                           <p>
+                               Хотите удалить отчет о рассылке "{{ object.message_sender.subject }}"
+                           </p>
+                            <button type="submit" class="btn btn-success">
+                                Подтвердить
+                            </button>
+                            <a href="{% url 'sender:attempt_list' %}" class="btn btn-success">Отмена</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}>

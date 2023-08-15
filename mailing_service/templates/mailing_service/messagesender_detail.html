@@ -1,0 +1,47 @@
+{% extends 'mailing_service/base.html' %}
+
+{% block body %}
+    <div class="row text-start">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="w-25">Тема</td>
+                            <td>{{ object.subject }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Содержание</td>
+                            <td>{{ object.body }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">ID рассылки</td>
+                            <td>{{ object.id }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Дата начала</td>
+                            <td>{{ object.start_date }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Дата окончания</td>
+                            <td>{{ object.end_date }}</td>
+                        </tr>
+                         <tr>
+                            <td class="w-25">Периодичность рассылки</td>
+                            <td>{{ object.frequency }}</td>
+                        </tr>
+                         <tr>
+                            <td class="w-25">Статус рассылки</td>
+                            <td>{{ object.status }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-25">Создатель рассылки</td>
+                            <td>{{ object.creator }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

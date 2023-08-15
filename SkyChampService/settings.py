@@ -35,14 +35,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'django_crontab',
 
     'mailing_service',
     'users',
@@ -142,13 +141,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-# CRONTAB_EXECUTABLE=(os.path.join(BASE_DIR, "venv/bin/crontab"), )
 
 CRONJOBS = [
-            ('15 23 * * *', 'mailing_service.services.send_email', ['DAILY']),
-            ('0 10 * * 1', 'mailing_service.services.send_email', ['WEEKLY']),
-            ('0 11 1 * *', 'mailing_service.services.send_email', ['MONTHLY'])
+            ('0 9 * * *', 'mailing_service.cron.my_scheduled_job', ['DAILY']),
+            ('0 10 * * 1', 'mailing_service.cron.my_scheduled_job', ['WEEKLY']),
+            ('0 11 1 * *', 'mailing_service.cron.my_scheduled_job', ['MONTHLY'])
             ]
+
 
 # E_mail settings
 RECIPIENTS_EMAIL = ['yury_yury@mail.ru']

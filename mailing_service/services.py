@@ -7,7 +7,7 @@ from mailing_service.models import Customer, MessageSender, Attempt
 
 
 def send_email(*args):
-
+    print('servise is raning')
     list_customer: list = Customer.objects.filter(is_active=True)
 
 
@@ -24,10 +24,13 @@ def send_email(*args):
 
     for send in list_message_sender:
         for customer in list_customer:
-            response = send_mail(subject=send.subject,
-                                 message=send.body,
-                                 from_email=settings.EMAIL_HOST_USER,
-                                 recipient_list=[customer.email,],)
+            try:
+                response = send_mail(subject=send.subject,
+                                     message=send.body,
+                                     from_email=settings.EMAIL_HOST_USER,
+                                     recipient_list=[customer.email,],)
+            except Exception as e:
+                response = e
 
             if response == 1:
                 status = 'DELIVERED'

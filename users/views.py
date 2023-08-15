@@ -112,6 +112,3 @@ class UserPasswordResetView(PasswordResetView):
     template_name = "users/password_reset_form.html"
 
 
-
-
-

@@ -16,19 +16,20 @@
     <h4 class="my-0 mr-md-auto font-weight-normal">SkyChamp</h4>
     <div class="col-9">
         <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="#">Каталог</a>
-        <a class="p-2 btn btn-outline-primary" href="#">Блог</a>
-        <a class="p-2 btn btn-outline-primary" href="#">Контакты</a>
-        </nav>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'sender:customer_list' %}">Клиенты</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'sender:list' %}">Рассылки</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'sender:attempt_list' %}">Отчеты о доставке</a>
+            <a class="p-2 btn btn-outline-primary" href="#">Блог</a>
+         </nav>
     </div>
     <div class="col-2">
         <nav class="ms-5">
             {% if user.is_authenticated %}
-            <a class="p-2 btn btn-outline-primary" href="#">Выйти</a>
-            <a class="p-2 btn btn-outline-primary" href="#">Профиль</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:logout' %}">Выйти</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'user:profile' %}">Профиль</a>
             {% else %}
-            <a class="p-2 btn btn-outline-primary" href="#">Войти</a>
-            <a class="p-2 btn btn-outline-primary" href="#">Регистрация</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Войти</a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:register' %}">Регистрация</a>
             {% endif %}
         </nav>
     </div>
