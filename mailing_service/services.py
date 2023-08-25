@@ -45,7 +45,6 @@ def send_email(*args):
 
         if send.frequency == 'ONCE':
             send.status = 'COMPLETED'
-            send.save()
         else:
             send.status = 'LAUNCHED'
-            send.save()
+        send.save()

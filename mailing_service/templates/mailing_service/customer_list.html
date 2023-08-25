@@ -7,7 +7,9 @@
     </div>
     {% endif %}
     <div class="row text-center">
+
         {% for item in object_list %}
+
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
@@ -23,20 +25,19 @@
 
                         <div class="btn-group">
                             <a href="{% url 'sender:customer_detail' item.id %} " class="btn btn-sm btn-outline-secondary">Подробно</a>
-                        {% if request.user.is_authenticated %}
-                            {% if perms.catalog.set_published %}
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Модерировать</a>
+                            {% if perms.mailing_service.set_active_customer %}
+                            <a href="{% url 'sender:set_is_active' item.id %}" class="btn btn-sm btn-outline-secondary">Изменить статус</a>
                             {% elif request.user == item.creator %}
                             <a href="{% url 'sender:customer_update' item.id %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
                             <a href="{% url 'sender:customer_delete' item.id %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
                             {% endif %}
-                        {% endif %}
                         </div>
 
                 </div>
             </div>
         </div>
     {% endfor %}
+
     </div>
     <nav aria-label="...">
   <ul class="pagination">

@@ -1,0 +1,50 @@
+{% extends 'mailing_service/base.html' %}
+{% load my_tags %}
+
+{% block body %}
+    <div class="row gy-5">
+        <h4> Сервис рассылки сообщений</h4>
+        <div class="col">
+            <div class="card shadow-sm text-center" style="background: #e0e0e0">
+                <figure class="p-3 mb-0">
+                    Создано рассылок: {% count_messagesender %}.<br>
+                    <br>
+                    Количество активных рассылок: {% count_messagesender_is_active %}.<br>
+                    <br>
+                    Количество уникальных клиентов: {% count_customer_is_active %}
+                </figure>
+            </div>
+        </div>
+    </div>
+<br>
+<div class="row text-center">
+        {% for item in random_blog_posts %}
+        <div class="col-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ item.title }}</h4>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'blog:detail' item.id %}">
+                      <img alt="Фото" class="card-img-top" style="width: 75%" src="{{ item.preview|mediapath }} ">
+                    </a>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>Содержание: {{ item.content|truncatechars:100 }}</li>
+                    </ul>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'blog:detail' item.id %}" class="btn btn-sm btn-outline-secondary">Подробно</a>
+                            {% if 'content_managers' in user_groups %}
+                            <a href="{% url 'blog:update' item.id %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                            <a href="{% url 'blog:delete' item.id %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+<br>
+{% endblock %}

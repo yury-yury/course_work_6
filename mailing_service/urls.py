@@ -1,16 +1,19 @@
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import path, include
+from django.views.decorators.cache import cache_page
 
 from mailing_service.apps import MailingServiceConfig
-from mailing_service.views import index, MessageSenderCreateView, MessageSenderListView, MessageSenderDetailView, \
+from mailing_service.views import MessageSenderCreateView, MessageSenderListView, MessageSenderDetailView, \
     MessageSenderUpdateView, MessageSenderDeleteView, CustomerCreateView, CustomerListView, CustomerDetailView, \
-    CustomerUpdateView, CustomerDeleteView, AttemptListView, AttemptDetailView, AttemptDeleteView
+    CustomerUpdateView, CustomerDeleteView, AttemptListView, AttemptDetailView, AttemptDeleteView, \
+    change_status_messagesender, change_is_active, MainView
 
 app_name = MailingServiceConfig.name
 
 
 urlpatterns = [
-    path('', index),
+    path('', cache_page(60)(MainView.as_view()), name='main'),
 
     path('customer/create', CustomerCreateView.as_view(), name='customer_create'),
     path('customer/list', CustomerListView. as_view(), name='customer_list'),
@@ -28,5 +31,8 @@ urlpatterns = [
     path('attempt/list', AttemptListView. as_view(), name='attempt_list'),
     path('attempt/detail/<int:pk>', AttemptDetailView. as_view(), name='attempt_detail'),
     path('attempt/delete/<int:pk>', AttemptDeleteView. as_view(), name='attempt_delete'),
+
+    path('set_is_active/<int:pk>', login_required(change_is_active), name='set_is_active'),
+    path('set_status_sending/<int:pk>', login_required(change_status_messagesender), name='set_status_messagesender')
 
 ]

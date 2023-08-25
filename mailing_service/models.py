@@ -15,6 +15,9 @@ class Customer(models.Model):
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
+        permissions = [
+            ('set_active_customer', 'Can set active customer'),
+        ]
 
     def __str__(self):
         return self.name
@@ -51,6 +54,9 @@ class MessageSender(models.Model):
     class Meta:
         verbose_name = 'Рассылка сообщения'
         verbose_name_plural = 'Рассылки сообщений'
+        permissions = [
+            ('set_messagesender_status', 'Can set messagesender status'),
+        ]
 
 
 class Attempt(models.Model):

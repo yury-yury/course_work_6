@@ -24,14 +24,12 @@
 
                         <div class="btn-group">
                             <a href="{% url 'sender:detail' item.id %} " class="btn btn-sm btn-outline-secondary">Подробно</a>
-                        {% if request.user.is_authenticated %}
-                            {% if perms.catalog.set_published %}
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Модерировать</a>
+                            {% if perms.mailing_service.set_active_customer %}
+                            <a href="{% url 'sender:set_status_messagesender' item.id %}" class="btn btn-sm btn-outline-secondary">Изменить статус</a>
                             {% elif request.user == item.creator %}
                             <a href="{% url 'sender:update' item.id %}" class="btn btn-sm btn-outline-secondary">Редактировать</a>
                             <a href="{% url 'sender:delete' item.id %}" class="btn btn-sm btn-outline-secondary">Удалить</a>
                             {% endif %}
-                        {% endif %}
                         </div>
 
                 </div>
