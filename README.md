@@ -119,20 +119,18 @@ ________________________________________________________________________________
 
 6. Создать файл .env и прописать в нем значение переменных для доступа к БД и к почтовому серверу:
 
-SECRET_KEY=
+-SECRET_KEY=
 
-# database
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
-DB_HOST=localhost
-DB_PORT=5432
+- DB_NAME=
+- DB_USER=
+- DB_PASSWORD=
+- DB_HOST=localhost
+- DB_PORT=5432
 
-# email settings
-EMAIL_HOST=smtp.mail.ru
-EMAIL_PORT=2525
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
+- EMAIL_HOST=smtp.mail.ru
+- EMAIL_PORT=2525
+- EMAIL_HOST_USER=
+- EMAIL_HOST_PASSWORD=
 
 
 7. Применить миграции
